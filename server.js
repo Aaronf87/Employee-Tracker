@@ -1,6 +1,7 @@
 const inquirer = require ("inquirer");
 const db = require ('./db/connection')
 function startApp() {
+  // prompt the list questions/inquires!
     inquirer
       .prompt([
         {
