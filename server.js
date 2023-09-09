@@ -137,4 +137,60 @@ function startApp() {
         })
       })
   };
+  function addEmployee() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "firstName",
+          message: "What is the employee's first name?",
+        },
+        {
+          type: "input",
+          name: "lastName",
+          message: "What is the employee's last name?",
+        },
+        {
+          type: "input",
+          name: "roleId",
+          message: "What is the employee's role_id?",
+        },
+        {
+          type: "input",
+          name: "managerId",
+          message: "What is the employee's manager ID?",
+        },
+      ])
+      .then((answer) => {
+        const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`
+        db.query(sql, [answer.firstName, answer.lastName, answer.roleId, answer.managerId], (err, result) => {
+          if (err) console.log(err)
+          console.log("Employee added!")
+          startApp()
+        })
+      })
+  };
+  function updateEmployee() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "employeeId",
+          message: "What is the ID of the employee you would like to update?",
+        },
+        {
+          type: "input",
+          name: "roleId",
+          message: "What is the new role ID of the employee?",
+        },
+      ])
+      .then((answer) => {
+        const sql = `UPDATE employee SET role_id = ? WHERE id = ?`
+        db.query(sql, [answer.roleId, answer.employeeId], (err, result) => {
+          if (err) console.log(err)
+          console.log("Employee updated!")
+          startApp()
+        })
+      })
+  };
   startApp();
