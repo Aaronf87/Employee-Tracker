@@ -9,7 +9,11 @@ This application was made using nodejs, mysql, Node packages: inquirer, mysql2.
 
 
 
-https://github.com/Aaronf87/Employee-Tracker/assets/97806359/ea53ed97-fe7d-456c-a8a2-20a9207c5d24
+
+https://github.com/Aaronf87/Employee-Tracker/assets/97806359/fb141d45-aac6-4dcb-bda2-c2f2a2664d59
+
+
+
 
 
 
