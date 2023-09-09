@@ -71,5 +71,70 @@ function startApp() {
       console.table(rows)
       startApp()
     })
-  }
+  };
+  function viewDepts() {
+    const sql = `SELECT * FROM department`
+    db.query(sql, (err, rows) => {
+      if (err) console.log(err)
+      console.table(rows)
+      startApp()
+    })    
+  };
+  function viewRoles() {
+    const sql = `SELECT role.id, role.title, role.salary, department.name AS department
+                      FROM role
+                      LEFT JOIN department
+                      ON role.department_id = department.id`
+    db.query(sql, (err, rows) => {
+      if (err) console.log(err)
+      console.table(rows)
+      startApp()
+    })
+  };
+  function addDepartment() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "deptName",
+          message: "What is the name of the department?",
+        },
+      ])
+      .then((answer) => {
+        const sql = `INSERT INTO department (name) VALUES (?)`
+        db.query(sql, answer.deptName, (err, result) => {
+          if (err) console.log(err)
+          console.log("Department added!")
+          startApp()
+        })
+      })
+  };
+  function addRole() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "roleName",
+          message: "What is the name of the role?",
+        },
+        {
+          type: "input",
+          name: "roleSalary",
+          message: "What is the salary of the role?",
+        },
+        {
+          type: "input",
+          name: "roleDept",
+          message: "What is the department ID of the role?",
+        },
+      ])
+      .then((answer) => {
+        const sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`
+        db.query(sql, [answer.roleName, answer.roleSalary, answer.roleDept], (err, result) => {
+          if (err) console.log(err)
+          console.log("Role added!")
+          startApp()
+        })
+      })
+  };
   startApp();
