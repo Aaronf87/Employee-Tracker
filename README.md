@@ -20,7 +20,7 @@ https://github.com/Aaronf87/Employee-Tracker/assets/97806359/fb141d45-aac6-4dcb-
 
 This application will be invoked by using the following command:
 
-node index.js
+node server.js
 for any questions please contact me at
 
 aaron_flores08@yahoo.com
